@@ -60,13 +60,13 @@ class DishFragment : Fragment() {
 
     /*в функции инит инициализируем адаптеры для тегов и блюд для разных recycler view*/
     private fun init() = with(binding) {
-        dishesAdapter = MainAdapter(requireContext()) { dishe ->
+        dishesAdapter = MainAdapter { dishe ->
             //обрабатываем нажатие на блюдо, в DishDetailDialog передаем Dishe, на который нажали
             val dialog = DishDetailsDialog.newInstance(dishe as Dishe)
             //показываем диалог с информацией о блюде и возможностью положить в корзину
             dialog.show(requireActivity().supportFragmentManager, "dish_detail_dialog")
         }
-        tagsAdapter = MainAdapter(requireContext()) { tag ->
+        tagsAdapter = MainAdapter { tag ->
             //обрабатываем нажатие на тэг, чтобы блюда фильтровались по тегу
             onTagClick(tag)
         }

@@ -58,7 +58,7 @@ class CategoryFragment : Fragment() {
     /*инициализируем адаптер, по нажатию на категорию передаем название категории через sharedViewModel
     * на следующий экран, чтобы оно отображалось в верхней панели*/
     private fun init() = with(binding) {
-        mainAdapter = MainAdapter(requireContext()) {item ->
+        mainAdapter = MainAdapter {item ->
             if (item is Category) {
                 onCategoryClick()
                 sharedViewModel.data.value = item.name

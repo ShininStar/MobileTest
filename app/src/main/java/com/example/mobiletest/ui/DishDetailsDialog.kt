@@ -9,9 +9,11 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import com.example.mobiletest.R
 import com.example.mobiletest.data.models.Basket
 import com.example.mobiletest.data.models.Dishe
+import com.example.mobiletest.viewmodel.BasketViewModel
 import com.squareup.picasso.Picasso
 
 /*Это всплывающий диалог по нажатию на блюдо, здесь не использовал binding, чтобы показать разные способы
@@ -26,6 +28,7 @@ class DishDetailsDialog : DialogFragment() {
     private lateinit var btToBag: Button
     private lateinit var btClose: ImageButton
     private lateinit var btLike: ImageButton
+    private val model: BasketViewModel by activityViewModels()
 
     companion object {
         private const val ARG_DISH = "dish"
@@ -77,6 +80,7 @@ class DishDetailsDialog : DialogFragment() {
             btToBag.setOnClickListener {
                 val basket = Basket.getInstance()
                 basket.addItem(dish)
+                model.dishesInBasket.value = basket.getItems()
                 dialog.dismiss()
             }
         }
